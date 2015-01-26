@@ -9,14 +9,8 @@ var format = new chartDataFormat();
                 fontFamily: 'tahoma'
             },
             backgroundColor: 'transparent'
-        }
-    });
-    
-    // these are ways to override the base chart
-    Highcharts.setOptions({
-        tooltip: {
-            // valueSuffix is overridden by formatter:
-            //valueSuffix: '°C',
+        },
+        tooltip:{
             backgroundColor: null,
             borderWidth: 0,
             shadow: false,
@@ -24,7 +18,12 @@ var format = new chartDataFormat();
             useHTML: true,
             style: {
                 padding: 0
-            },
+            },}
+    });
+
+    // these are ways to override the base chart
+    Highcharts.setOptions({
+        tooltip: {
             formatter: function () {
 
                 // formatter returns 'headerFormat', 'pointFormat' and 'footerFormat'
