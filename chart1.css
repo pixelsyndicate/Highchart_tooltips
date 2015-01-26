@@ -1,0 +1,28 @@
+.tooltip-header {
+    background: rgba(0, 82, 163, 0.85);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #fff;
+    padding: 8px;
+    margin-bottom: -2px;
+    box-shadow: 1px -1px 2px rgba(138, 138, 138, 0.5);
+}
+.tooltip-table {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid silver;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    /* box-shadow: h-shadow, v-shadow, blurdistance(optional), spread(sizeofshadow-optional), color*/
+    box-shadow: 1px 1px 2px rgba(138, 138, 138, 0.5);
+    padding: 8px;
+    width: 100%;
+}
+.tooltip-label {
+    color: #000;
+    padding: 2px 6px;
+}
+.tooltip-value {
+    color: #000;
+    padding: 2px 6px;
+    text-align: right;
+}
