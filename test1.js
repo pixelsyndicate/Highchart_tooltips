@@ -26,16 +26,16 @@ var chartDataFormat = function () {
     };
 
     // return string
-    self.currency = function (v) {
+    self.currency = function (value, count) {
 
-        self.valueToFormat = v;
-        return '$' + self.decimals(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'M';
+        self.valueToFormat = value;
+        return '$' + self.decimals(count).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'M';
     };
 
     // returns string
     self.percent = function (v) {
-        this.valueToFormat = (v >= 1) ? (v * 100) : v;
-        return valueToFormat.toString() + '%';
+        self.valueToFormat = (v >= 1) ? (v * 100) : v;
+        return self.valueToFormat.toString() + '%';
     };
 
     // return string

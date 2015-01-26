@@ -20,7 +20,14 @@
             var formatter = new chartDataFormat();
             var testString = "... START ... <br/>";
             testString += "My value is " + testVal + "<br/>";
-            testString += "rounded to 2 decimal places : " + formatter.roundThousands(testVal, 1) + "<br/>";
+            testString += "in thousands to 1 decimal place : " + formatter.roundThousands(testVal, 1) + "<br/>";
+
+            testString += "in Millions to 2 decimal place : " + formatter.roundMillions(testVal, 1) + "<br/>";
+            testString += "in currency to 3 decimal place : " + formatter.currency(testVal, 3) + "<br/>";
+
+            testVal = 0.45;
+            testString += "My value is " + testVal + "<br/>";
+             testString += "in percent : " + formatter.percent(testVal) + "<br/>";
 
             $('#tester').html(testString + "<br/>... END ..." + "<br/>");
 
