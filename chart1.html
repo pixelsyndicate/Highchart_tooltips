@@ -18,11 +18,12 @@
             var testVal = 123456.7890;
             var formatter = new utilities.numbers;
             var testString = "... START ... <br/>";
-            testString += "My value is " + testVal + "<br/>";
+            formatter.valueToFormat = testVal;
+            testString += "My value is " + formatter.toDecimalRounded(2) + "<br/>";
             testString += "in thousands to 1 decimal place : " + formatter.toThousands(testVal, 1) + "<br/>";
 
             testString += "in Millions to 2 decimal place : " + formatter.toMillions(testVal, 1) + "<br/>";
-            testString += "in currency to 3 decimal place : " + formatter.toCurrency(testVal, 3) + "<br/>";
+            testString += "in currency to 4 decimal place : " + formatter.toCurrency(testVal, 3) + "<br/>";
 
             testVal = 0.45;
             testString += "My value is " + testVal + "<br/>";
