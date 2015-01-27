@@ -9,23 +9,24 @@
     <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
+   <script src="utilities.js"></script>
+<script src="utilities.numbers.js"></script>
     <script>
 
         $(function () {
             // testing my methods
             var testVal = 123456.7890;
-            var formatter = new chartDataFormat();
+            var formatter = new utilities.numbers;
             var testString = "... START ... <br/>";
             testString += "My value is " + testVal + "<br/>";
-            testString += "in thousands to 1 decimal place : " + formatter.roundThousands(testVal, 1) + "<br/>";
+            testString += "in thousands to 1 decimal place : " + formatter.toThousands(testVal, 1) + "<br/>";
 
-            testString += "in Millions to 2 decimal place : " + formatter.roundMillions(testVal, 1) + "<br/>";
-            testString += "in currency to 3 decimal place : " + formatter.currency(testVal, 3) + "<br/>";
+            testString += "in Millions to 2 decimal place : " + formatter.toMillions(testVal, 1) + "<br/>";
+            testString += "in currency to 3 decimal place : " + formatter.toCurrency(testVal, 3) + "<br/>";
 
             testVal = 0.45;
             testString += "My value is " + testVal + "<br/>";
-            testString += "in percent : " + formatter.percent(testVal) + "<br/>";
+            testString += "in percent : " + formatter.toPercent(testVal) + "<br/>";
 
             $('#tester').html(testString + "<br/>... END ..." + "<br/>");
 
@@ -40,7 +41,6 @@
     <div id='tester' class='tooltip-header'>hi</div>
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
-    <script src="test1.js"></script>
 
 
     <script src="chart1.js"></script>

@@ -1,6 +1,6 @@
 $(function () {
 
-    var format = new chartDataFormat();
+    var format = new utilities.numbers();
 
     var jsonData = [];
 
@@ -43,10 +43,10 @@ $(function () {
                 var s = '<div class="tooltip-header">' + this.x.replace('<br>', ' - ') + '</div><table class="tooltip-table">';
                 $.each(this.points, function (i, point) {
                     s += '<tr data-ident="graphs.funnel_dual_fund.js"><td class="tooltip-label">' + this.series.name + '</td><td class="tooltip-value">';
-                    if (point.y >= 100000) {
-                        s += format.roundMillions(point.y, 1);
+                    if (point.y >= 1000000) {
+                        s += format.toMillions(point.y, 1);
                     } else {
-                        s += format.roundThousands(point.y, 2);
+                        s += format.toThousands(point.y, 2);
                     }
                     s += '</td></tr>';
                 });
