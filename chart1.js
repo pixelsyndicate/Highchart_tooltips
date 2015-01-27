@@ -1,6 +1,6 @@
 $(function () {
 
-    var format = new utilities.numbers();
+    // var format = new utilities.numbers();
 
     var jsonData = [];
 
@@ -41,13 +41,12 @@ $(function () {
 
                 // formatter returns 'headerFormat', 'pointFormat' and 'footerFormat'
                 var s = '<div class="tooltip-header">' + this.x.replace('<br>', ' - ') + '</div><table class="tooltip-table">';
+
                 $.each(this.points, function (i, point) {
+
                     s += '<tr data-ident="graphs.funnel_dual_fund.js"><td class="tooltip-label">' + this.series.name + '</td><td class="tooltip-value">';
-                    if (point.y >= 1000000) {
-                        s += format.toMillions(point.y, 1);
-                    } else {
-                        s += format.toThousands(point.y, 2);
-                    }
+
+                    s += (i===0) ? point.y.toMoney(2, true, true):  point.y.toMoney(0,false,true);
                     s += '</td></tr>';
                 });
                 s += '</table>';
@@ -87,12 +86,12 @@ $(function () {
         },
         series: [{
             type: 'column',
-            name: jsonData.Series[1].name,
-            data: jsonData.Series[1].data
-        }, {
-            type: 'spline',
             name: jsonData.Series[0].name,
             data: jsonData.Series[0].data
+        }, {
+            type: 'spline',
+            name: jsonData.Series[1].name,
+            data: jsonData.Series[1].data
         }]
     });
 });
