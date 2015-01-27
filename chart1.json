@@ -8,7 +8,7 @@
         "dataFormat": "$",
         "dataDecimalPlaces": 1
     }, {
-        "name": "Total Balance",
+        "name": "Total Accounts",
         "color": null,
         "data": [3080000.8, 155680.2, 2060000.6, 118180.7, 3070000.7, 3070000.7, 148240.1, 3090000.9, 1090000.9, 3070000.7],
         "dataFormat": "%",
