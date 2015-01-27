@@ -1,7 +1,19 @@
 $(function () {
 
-var format = new chartDataFormat();
-    
+    var format = new chartDataFormat();
+
+    var jsonData = [];
+
+    $.ajax({
+        url: 'chart1.json',
+        async: false,
+        dataType: 'json',
+        success: function (json) {
+            jsonData = json;
+        }
+    });
+
+
     // these are ways to override the base chart
     Highcharts.setOptions({
         chart: {
@@ -10,7 +22,7 @@ var format = new chartDataFormat();
             },
             backgroundColor: 'transparent'
         },
-        tooltip:{
+        tooltip: {
             backgroundColor: null,
             borderWidth: 0,
             shadow: false,
@@ -18,7 +30,8 @@ var format = new chartDataFormat();
             useHTML: true,
             style: {
                 padding: 0
-            },}
+            },
+        }
     });
 
     // these are ways to override the base chart
@@ -31,7 +44,7 @@ var format = new chartDataFormat();
                 $.each(this.points, function (i, point) {
                     s += '<tr data-ident="graphs.funnel_dual_fund.js"><td class="tooltip-label">' + this.series.name + '</td><td class="tooltip-value">';
                     if (point.y >= 100000) {
-                        s += format.roundMillions(point.y,1);
+                        s += format.roundMillions(point.y, 1);
                     } else {
                         s += format.roundThousands(point.y, 2);
                     }
@@ -42,7 +55,7 @@ var format = new chartDataFormat();
             }
         }
     });
-        
+
     // here is the declaration of a highchart to a div
     $('#container').highcharts({
         title: {
