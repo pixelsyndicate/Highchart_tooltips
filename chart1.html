@@ -6,7 +6,7 @@
     <link href="chart1.css" rel="stylesheet">
 
 
-    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
@@ -16,15 +16,118 @@
     <script src="number.tomoney.js"></script>
     <script src="number.topercent.js"></script>
 
+    <script>
+        // base data
+        var jsonData = {
+            "Title": "Accounts Balance",
+            "Categories": ["Apr '12<br/>Jan '13", "May '12<br/>Feb '13", "Jun '12<br/>Mar '13", "Jul '12<br/>Apr '13", "Aug '12<br/>May '13", "Sep '12<br/>Jun '13", "Oct '12<br/>Jul '13", "Nov '12<br/>Aug '13", "Dec '12<br/>Sep '13", "Jan '13<br/>Oct '13"],
+            "Series": [{
+                "name": "Average Balance",
+                "color": null,
+                "data": [160050.8, 155680.0, 144500.2, 118180.9, 153370.8, 155560.1, 148240.3, 194400.7, 116020.2, 137500.1],
+                "dataFormat": "$",
+                "dataDecimalPlaces": 1
+            }, {
+                "name": "Total Balance",
+                "color": null,
+                "data": [3080000.8, 3020000.2, 2060000.6, 2070000.7, 3070000.7, 3070000.7, 4010000.1, 3090000.9, 1090000.9, 3070000.7],
+                "dataFormat": "%",
+                "dataDecimalPlaces": 2
+            }]
+        };
+
+    </script>
+
 </head>
 
 <body>
+
     <div id='tester' class='tooltip-header'>hi</div>
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
+    <!-- configure the highchart using Highcharts.setOptions() -->
+    <script src="highchart.options.js"></script>
+
+    <script>
 
 
-    <script src="chart1.js"></script>
+        // instantiate this to create an object that will convert to Currency, Decimals, Percent, roundToMills, roundThousands
+        var numberFormatter = new utilities.numbers.stringNumber();
+        var logContainer = null;
+        var chartContainer = null;
+
+        // here is the declaration of a highchart to a div
+        $(function () {
+
+            chartContainer = $('#container');
+
+
+
+            chartContainer.highcharts({
+                title: {
+                    text: "Accounts Balance",
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: 'Source: secret society',
+                    x: -20
+                },
+                xAxis: {
+                    categories: jsonData.Categories
+                },
+                yAxis: {
+                    title: {
+                        text: "Accounts Balance"
+                    },
+                    plotLines: [
+                        {
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }
+                    ]
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: [
+                    {
+                        type: 'column',
+                        name: jsonData.Series[1].name,
+                        data: jsonData.Series[1].data
+                    }, {
+                        type: 'spline',
+                        name: jsonData.Series[0].name,
+                        data: jsonData.Series[0].data
+                    }
+                ]
+            });
+
+
+
+            logContainer = $('#tester');
+            // testing my methods
+            var testVal = 123456.7890;
+            var testString = "... START LOG ... <br /> Testing JS logic <br />";
+            testString += "My value is " + testVal + "<br/>";
+            testString += "in thousands to 1 decimal place : " + numberFormatter.roundThousands(testVal, 1) + "<br/>";
+
+            testString += "in Millions to 2 decimal place : " + numberFormatter.roundMillions(testVal, 1) + "<br/>";
+            testString += "in currency to 3 decimal place : " + numberFormatter.currency(testVal, 3) + "<br/>";
+
+            testVal = 0.45;
+            testString += "My value is " + testVal + "<br/>";
+            testString += "in percent : " + numberFormatter.percent(testVal) + "<br/>";
+
+            logContainer.html(testString + "<br/>... END LOG ..." + "<br/>");
+
+        });
+
+
+    </script>
 </body>
 
 </html>
